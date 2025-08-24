@@ -7,7 +7,9 @@
     <title>The Reductionist's Lens</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
     <style>
         /* CSS is embedded directly here for a single-file experience */
         :root {
@@ -26,6 +28,16 @@
             --shadow-color: rgba(0, 64, 128, 0.1);
         }
 
+        body.dark-mode {
+            --bg-primary: #121212;
+            --bg-secondary: #1E1E1E;
+            --accent-blue: #4D94FF;
+            --text-primary: #EAEAEA;
+            --text-secondary: #B0B0B0;
+            --border-blue: rgba(77, 148, 255, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.25);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -37,13 +49,20 @@
         }
 
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Inter', sans-serif;
             background-color: var(--bg-primary);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
             /* Animated Gradient Background */
             background: linear-gradient(-45deg, #FDFDFA, #F7F7F3, #FDFDFA, #F5F5F0);
+            background-size: 400% 400%;
+            animation: gradientAnimation 30s ease infinite;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.dark-mode {
+            background: linear-gradient(-45deg, #1a1a1a, #121212, #1a1a1a, #0d0d0d);
             background-size: 400% 400%;
             animation: gradientAnimation 30s ease infinite;
         }
@@ -83,6 +102,10 @@
             transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
+        body.dark-mode header {
+            background-color: rgba(30, 30, 30, 0.8);
+        }
+
         header.scrolled {
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
@@ -96,6 +119,7 @@
         }
 
         .logo a {
+            font-family: 'Poppins', sans-serif;
             color: var(--text-primary);
             font-size: 1.5rem;
             font-weight: 700;
@@ -149,6 +173,48 @@
             left: 0;
         }
 
+        .theme-toggle-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 1rem;
+            display: grid;
+            place-items: center;
+            color: var(--text-secondary);
+            width: 32px;
+            height: 32px;
+            position: relative;
+        }
+
+        .theme-toggle-btn:hover {
+            color: var(--accent-blue);
+        }
+
+        .theme-toggle-btn svg {
+            grid-area: 1 / 1;
+            width: 22px;
+            height: 22px;
+            transition: color 0.3s ease, transform 0.4s cubic-bezier(0.445, 0.05, 0.55, 0.95), opacity 0.4s ease;
+        }
+
+        /* Light mode state (default) */
+        .theme-toggle-btn .moon-icon {
+            transform: rotate(90deg) scale(0.5);
+            opacity: 0;
+        }
+
+        /* Dark mode state */
+        body.dark-mode .theme-toggle-btn .sun-icon {
+            transform: rotate(-90deg) scale(0.5);
+            opacity: 0;
+        }
+
+        body.dark-mode .theme-toggle-btn .moon-icon {
+            transform: rotate(0deg) scale(1);
+            opacity: 1;
+        }
+
         main {
             padding-top: 100px;
             /* Offset for fixed header */
@@ -164,6 +230,7 @@
         }
 
         .hero .page-title {
+            font-family: 'Poppins', sans-serif;
             font-size: 3.5rem;
             font-weight: 700;
         }
@@ -176,8 +243,9 @@
         /* Page Titles */
         .page-title {
             text-align: center;
+            font-family: 'Poppins', sans-serif;
             font-size: 3rem;
-            font-weight: 300;
+            font-weight: 600;
             color: var(--accent-blue);
             margin-bottom: 1rem;
         }
@@ -220,7 +288,7 @@
             border: 1px solid var(--border-blue);
             border-radius: 8px;
             padding: 2rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease, background-color 0.3s ease, border-color 0.3s ease;
             opacity: 0;
             transform: translateY(30px);
         }
@@ -236,6 +304,7 @@
         }
 
         .card-title {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--accent-blue);
@@ -258,6 +327,7 @@
         }
 
         .layer-title {
+            font-family: 'Poppins', sans-serif;
             font-size: 2rem;
             color: var(--text-primary);
         }
@@ -356,6 +426,7 @@
         }
 
         .modal-title {
+            font-family: 'Poppins', sans-serif;
             font-size: 1.8rem;
             color: var(--accent-blue);
         }
@@ -374,6 +445,7 @@
         }
 
         .modal-body h3 {
+            font-family: 'Poppins', sans-serif;
             color: var(--text-primary);
             margin-top: 1.5rem;
             margin-bottom: 0.5rem;
@@ -394,6 +466,7 @@
         }
 
         .timeline-item h3 {
+            font-family: 'Poppins', sans-serif;
             color: var(--text-primary);
             font-weight: 400;
             margin-bottom: 0.5rem;
@@ -431,6 +504,10 @@
             background-color: rgba(0, 64, 128, 0.02);
         }
 
+        body.dark-mode .summary-table tbody tr:nth-child(even) {
+            background-color: rgba(77, 148, 255, 0.05);
+        }
+
 
         /* Footer */
         footer {
@@ -439,6 +516,22 @@
             margin-top: 4rem;
             color: var(--text-secondary);
             border-top: 1px solid var(--border-blue);
+        }
+
+        .footer-links {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            color: var(--accent-blue);
+            text-decoration: none;
+            margin: 0 0.75rem;
+            font-weight: 700;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -456,6 +549,24 @@
                 <li><a data-page="model">The Mental Model</a></li>
                 <li><a data-page="timeline">Timeline</a></li>
             </ul>
+            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
+                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </button>
         </nav>
     </header>
 
@@ -464,8 +575,12 @@
     </main>
 
     <footer id="footer">
-        <p>2025 Ramu Mangalarapu</p>
-        <p><small>Disclaimer: Ideas and opinions expressed are my own and do not reflect my employer.</small></p>
+        <p>&copy; 2025 <strong>Ramu Mangalarapu</strong></p>
+        <p class="footer-links">
+            <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://medium.com/@ramu.mangalarapu1622" target="_blank" rel="noopener noreferrer">Medium</a>
+        </p>
+        <p><small>DISCLAIMER: ideas and opinions expressed are my own and do not reflect my employer.</small></p>
     </footer>
 
     <!-- Modal Structure (Hidden by default) -->
@@ -498,111 +613,112 @@
             const modalExamples = document.getElementById('modal-examples');
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const header = document.querySelector('header');
+            const themeToggle = document.getElementById('theme-toggle');
 
             const pageContent = {
                 home: `
                     <div class="hero">
                         <div class="container">
-                            <h1 class="page-title">Ramu Mangalarapu take on software architecture</h1>
+                            <h1 class="page-title">Ramu Mangalarapu's take on software architecture</h1>
                             <p class="tagline">Somehow everything is related</p>
                             <p class="page-subtitle">
-                                An approach to understanding any system, not by memorizing its complexities, but by distilling it to its timeless, fundamental truths. This is a framework for thinking, designed for architects who seek to build with clarity and conviction.
+                                Instead of memorizing complex frameworks, what if we could understand any system by breaking it down to its core truths? This is a thinking toolkit for developers and architects who want to build with clarity and conviction.
                             </p>
                         </div>
                     </div>
                     <div class="container">
                         <div class="card-grid">
-                            <div class="card portal-card" data-page="layers"><h2 class="card-title">The Layers of Abstraction</h2><p class="card-content">Peel back the layers of a modern system, from your application code down to the physical hardware that executes it.</p></div>
-                            <div class="card portal-card" data-page="primitives"><h2 class="card-title">The Irreducible Primitives</h2><p class="card-content">Discover the 'atomic' components of any system—the absolute fundamental building blocks that everything else is built upon.</p></div>
-                            <div class="card portal-card" data-page="forces"><h2 class="card-title">The Immutable Forces</h2><p class="card-content">Explore the 'laws of physics' for software—the inescapable trade-offs that govern every architectural decision you will ever make.</p></div>
-                            <div class="card portal-card" data-page="model"><h2 class="card-title">The Mental Model</h2><p class="card-content">A four-step, repeatable framework for approaching any system design problem with a first-principles mindset.</p></div>
+                            <div class="card portal-card" data-page="layers"><h2 class="card-title">The Layers of Abstraction</h2><p class="card-content">Let's peel back the layers of a modern system, from the code you write all the way down to the silicon that runs it.</p></div>
+                            <div class="card portal-card" data-page="primitives"><h2 class="card-title">The Irreducible Primitives</h2><p class="card-content">Discover the 'atoms' of software—the handful of fundamental building blocks that make up every system you've ever seen.</p></div>
+                            <div class="card portal-card" data-page="forces"><h2 class="card-title">The Immutable Forces</h2><p class="card-content">Explore the 'laws of physics' for software. These are the inescapable trade-offs that shape every architectural decision, whether we realize it or not.</p></div>
+                            <div class="card portal-card" data-page="model"><h2 class="card-title">The Mental Model</h2><p class="card-content">Here's a simple, four-step framework you can use to tackle any system design problem with a clear, first-principles mindset.</p></div>
                         </div>
                     </div>`,
                 layers: `
                     <div class="container">
                         <h1 class="page-title">The Layers of Abstraction</h1>
-                        <p class="page-subtitle">Every system is a stack of abstractions. Understanding these layers allows us to reason about performance, debug issues, and appreciate the 'magic' our tools provide.</p>
+                        <p class="page-subtitle">Every piece of software is a stack of abstractions, one on top of the other. When you understand these layers, you can debug tricky performance issues, reason about system behavior, and truly appreciate the 'magic' our modern tools provide.</p>
                         <div class="layer-container">
-                            <div class="layer card"><h2 class="layer-title">Layer 4: Application & Runtime</h2><p class="layer-subtitle">The world of your logic</p><p class="card-content">This is where your Go or JavaScript code lives. It's governed by the rules of your language's runtime—the Go Scheduler or the JS Event Loop. The key is understanding how this runtime translates your logic into instructions for the layers below.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 3: The C/C++ FFI</h2><p class="layer-subtitle">The bridge to the native world</p><p class="card-content">The translation layer. This is where your managed language (Go/JS) talks to the unmanaged, OS-native world of C. Understanding the cost and complexity of this boundary (e.g., Cgo overhead) is crucial for performance-sensitive applications.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 2: The OS Interface</h2><p class="layer-subtitle">The API to the Kernel (Syscalls)</p><p class="card-content">The single, non-negotiable boundary. No user-space application can perform I/O without making a system call—a formal request to the kernel. Tools like 'strace' make this invisible layer visible, revealing the true work being done.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 1: The Kernel</h2><p class="layer-subtitle">The master resource manager</p><p class="card-content">The heart of the OS. It manages everything: scheduling which process uses the CPU, allocating memory, and handling the entire network stack. Its efficiency dictates the performance of everything running on top of it.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 0: The Hardware</h2><p class="layer-subtitle">The physical reality</p><p class="card-content">The silicon. CPU cores, caches (L1/L2/L3), RAM, and the NIC. The laws of physics rule here. Understanding concepts like cache locality and DMA is the final step to reasoning about true, bare-metal performance.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Layer 4: Application & Runtime</h2><p class="layer-subtitle">The world of your logic</p><p class="card-content">This is your world—the Go or JavaScript code you write every day. It's all managed by your language's runtime (like the Go Scheduler or the JS Event Loop). The real key here is to grasp how that runtime translates your elegant logic into concrete instructions for the machine.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Layer 3: The C/C++ FFI</h2><p class="layer-subtitle">The bridge to the native world</p><p class="card-content">Think of this as the bridge to the native world. It's where your high-level language (like Go or JS) has to talk to the low-level, OS-native world of C. For anything that needs to be fast, understanding the 'toll' for crossing this bridge (like Cgo overhead) is critical.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Layer 2: The OS Interface</h2><p class="layer-subtitle">The API to the Kernel (Syscalls)</p><p class="card-content">This is the one boundary you can't cheat. To do anything useful like read a file or send data over the network, your application *must* make a system call—a formal request to the OS kernel. Tools like \`strace\` let us peek behind the curtain and see the real work happening here.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Layer 1: The Kernel</h2><p class="layer-subtitle">The master resource manager</p><p class="card-content">Welcome to the master resource manager. The kernel juggles everything: it decides which process gets the CPU, manages memory, and handles all network traffic. The performance of your entire system ultimately depends on how well this layer does its job.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Layer 0: The Hardware</h2><p class="layer-subtitle">The physical reality</p><p class="card-content">We've reached physical reality—the silicon itself. We're talking CPU cores, caches (L1/L2/L3), RAM, and the network card. Down here, the laws of physics are in charge. Grasping concepts like cache locality is the final piece of the puzzle for understanding true, bare-metal performance.</p></div>
                         </div>
                     </div>`,
                 primitives: `
                     <div class="container">
                         <h1 class="page-title">The Irreducible Primitives</h1>
-                        <p class="page-subtitle">Distill any system down to its 'atomic' components. Every complex architecture is just a novel arrangement of these fundamental building blocks.</p>
+                        <p class="page-subtitle">Let's break down any system into its 'atomic' parts. You'll find that every complex architecture, from a simple web app to a global service, is just a new combination of these same few building blocks.</p>
                         <div class="card-grid">
-                            <div class="card"><h2 class="card-title">Data (At Rest)</h2><p class="card-content">Information that is being stored. This is your database, your object storage, your file system. The core challenge is how to store, retrieve, and manage it durably and consistently.</p></div>
-                            <div class="card"><h2 class="card-title">Data (In Motion)</h2><p class="card-content">Information that is being communicated between components. This is your REST APIs, gRPC calls, or messages in a queue. The core challenge is reliability, latency, and format.</p></div>
-                            <div class="card"><h2 class="card-title">Computation</h2><p class="card-content">The 'work' being done. The logic that transforms data. The core challenge is how to execute this logic efficiently, whether it's CPU-bound or I/O-bound, and how to scale it.</p></div>
-                             <div class="card"><h2 class="card-title">Latency</h2><p class="card-content">The time it takes for an operation to complete. A fundamental property of every action in a distributed system. Your job is not to eliminate it, but to manage your 'latency budget'.</p></div>
-                            <div class="card"><h2 class="card-title">Throughput</h2><p class="card-content">The rate at which operations can be performed (e.g., requests per second). This is the measure of a system's capacity and the primary driver for scalability decisions.</p></div>
+                            <div class="card"><h2 class="card-title">Data (At Rest)</h2><p class="card-content">Simply put, this is your data when it's not moving. Think databases, object stores, or even just files on a disk. The big questions are always: How do we store it safely, get it back quickly, and keep it consistent?</p></div>
+                            <div class="card"><h2 class="card-title">Data (In Motion)</h2><p class="card-content">This is data on the move. It's the lifeblood of your system, flowing through REST APIs, gRPC calls, and message queues. Here, we worry about speed, reliability, and making sure everyone speaks the same language (data format).</p></div>
+                            <div class="card"><h2 class="card-title">Computation</h2><p class="card-content">This is the 'thinking' part of your system—the actual work being done. It's the code that transforms data from one state to another. The main challenge is to make this work happen efficiently and figure out how to do more of it when traffic spikes.</p></div>
+                             <div class="card"><h2 class="card-title">Latency</h2><p class="card-content">Latency is the unavoidable time tax on every single operation. In any distributed system, it's a fact of life. Your goal isn't to magically eliminate it, but to understand it and spend your 'latency budget' wisely.</p></div>
+                            <div class="card"><h2 class="card-title">Throughput</h2><p class="card-content">This is all about how much work your system can handle, usually measured in 'requests per second'. It's the ultimate measure of your system's capacity and the number one reason we need to think about scaling.</p></div>
                         </div>
                     </div>`,
                 forces: `
                     <div class="container">
                         <h1 class="page-title">The Immutable Forces</h1>
-                        <p class="page-subtitle">These are the 'laws of physics' for system design. You cannot break them. You can only understand them and consciously choose which trade-offs to make.</p>
+                        <p class="page-subtitle">Think of these as the 'laws of physics' for software. You can't ignore them or wish them away. The only winning move is to understand them so you can make smart, conscious trade-offs.</p>
                         <div class="card-grid">
-                            <div class="card"><h2 class="card-title">The CAP Theorem</h2><p class="card-content">The law of distributed systems. During a network partition, you must choose between Consistency and Availability. This is not a suggestion; it's a mathematical proof that forces a choice in every distributed database and service.</p></div>
-                            <div class="card"><h2 class="card-title">The Law of Latency</h2><p class="card-content">The speed of light is finite. Distance matters. Every network call, every disk read costs time. The goal is to design systems that minimize round trips and place data and computation intelligently.</p></div>
-                            <div class="card"><h2 class="card-title">The Economic Triangle</h2><p class="card-content">Performance vs. Scalability vs. Cost. You cannot maximize all three. A system that is infinitely scalable and instantly fast will be prohibitively expensive. The art is finding the optimal balance for the business needs.</p></div>
-                            <div class="card"><h2 class="card-title">Coupling & Cohesion</h2><p class="card-content">The law of software organization. The entire debate between monoliths and microservices is an attempt to manage this. We strive for High Cohesion (grouping related logic) and Low Coupling (keeping components independent).</p></div>
+                            <div class="card"><h2 class="card-title">The CAP Theorem</h2><p class="card-content">This is the fundamental law of distributed systems. When the network gets flaky, you're forced to choose: do you want your data to be perfectly consistent, or do you want your service to stay available? It's not a suggestion—it's a mathematical reality you have to design for.</p></div>
+                            <div class="card"><h2 class="card-title">The Law of Latency</h2><p class="card-content">The speed of light isn't just a concept from physics class; it's the ultimate speed limit for your data. Every network call and disk read costs time. Our job is to design systems that are smart about distance, minimizing round trips and putting data and computation closer together.</p></div>
+                            <div class="card"><h2 class="card-title">The Economic Triangle</h2><p class="card-content">Fast, scalable, or cheap: pick two. You can't have it all. A system that's infinitely scalable and instantly fast would cost a fortune. The real art of architecture is finding the right balance that meets the business goals without breaking the bank.</p></div>
+                            <div class="card"><h2 class="card-title">Coupling & Cohesion</h2><p class="card-content">This is all about how we organize our code. The endless debate between monoliths and microservices is really just a struggle with this one concept. The goal is always the same: group related things together (High Cohesion) and keep unrelated things separate (Low Coupling).</p></div>
                         </div>
                         
                         <hr class="section-divider">
 
                         <h1 class="page-title" style="font-size: 2.5rem; margin-top: 4rem;">Tools for Taming the Forces</h1>
-                        <p class="page-subtitle">The forces are abstract, but the tools we use to manage them are concrete. Each component below is a solution designed to balance these fundamental trade-offs.</p>
+                        <p class="page-subtitle">These forces might sound abstract, but the tools we use to manage them are very real. Each piece of technology below is a clever solution someone built to help balance these fundamental trade-offs.</p>
 
                         <div class="tech-grid">
-                            <div class="tech-tile" data-title="Load Balancer" data-description="Distributes incoming network traffic across multiple backend servers." data-solves="Manages the Economic Triangle by enabling horizontal scaling of computation. Improves Availability by routing traffic away from failed servers." data-examples="Nginx, HAProxy, AWS ELB, Traefik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M17.25 4.93a4 4 0 0 1 0 7.75"></path><path d="M19 10V4"></path><path d="M19 20v-6"></path><path d="M5 20v-6"></path><path d="M5 10V4"></path><path d="M8 3.13a4 4 0 0 0 0 7.75"></path><path d="M6.75 4.93a4 4 0 0 0 0 7.75"></path><path d="M12 12h.01"></path></svg><span class="tech-tile-name">Load Balancers</span></div>
-                            <div class="tech-tile" data-title="API Gateway" data-description="A single entry point for all client requests, routing them to various microservices. It can also handle authentication, rate limiting, and logging." data-solves="Manages Coupling & Cohesion by decoupling clients from backend services. It centralizes cross-cutting concerns." data-examples="Kong, Apigee, AWS API Gateway, Istio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M6 12H2v10h4V12zm16 0h-4v10h4V12zM12 2L6 7h12L12 2z"></path></svg><span class="tech-tile-name">API Gateways</span></div>
-                            <div class="tech-tile" data-title="CDN" data-description="A geographically distributed network of proxy servers that cache content close to users." data-solves="Directly tackles the Law of Latency by reducing the physical distance data must travel. Improves Availability by distributing load." data-examples="Cloudflare, Akamai, Fastly, AWS CloudFront"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg><span class="tech-tile-name">CDNs</span></div>
-                            <div class="tech-tile" data-title="Relational DBs" data-description="Structured data storage with strict schema, ACID transactions, and SQL querying." data-solves="Prioritizes the 'C' (Consistency) in the CAP theorem. Manages the trade-off between strict consistency and write scalability." data-examples="PostgreSQL, MySQL, Oracle, SQLite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg><span class="tech-tile-name">Relational DBs</span></div>
-                            <div class="tech-tile" data-title="NoSQL Databases" data-description="Non-relational databases (documents, key-value, columnar, graph)." data-solves="Often prioritizes 'A' (Availability) over strong consistency. Excellent for the Economic Triangle via horizontal scalability." data-examples="MongoDB, Cassandra, Redis, Neo4j"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg><span class="tech-tile-name">NoSQL Databases</span></div>
-                            <div class="tech-tile" data-title="Caches" data-description="An in-memory data store that keeps frequently accessed data for very fast retrieval." data-solves="A primary tool for fighting the Law of Latency. It trades a degree of data consistency (data can be stale) for a massive improvement in read performance." data-examples="Redis, Memcached, Hazelcast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span class="tech-tile-name">Caches</span></div>
-                            <div class="tech-tile" data-title="Message Queues" data-description="Middleware for asynchronous communication between producers and consumers." data-solves="Manages Coupling by allowing services to communicate asynchronously. Improves Availability and resilience by buffering requests." data-examples="RabbitMQ, Kafka, ActiveMQ, SQS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="12" x2="2" y2="12"></line><polyline points="16 6 22 12 16 18"></polyline><polyline points="8 18 2 12 8 6"></polyline></svg><span class="tech-tile-name">Message Queues</span></div>
-                            <div class="tech-tile" data-title="Event Streaming" data-description="Real-time data pipelines for high-throughput events, often using a durable log." data-solves="Enables high-throughput, real-time data processing, addressing Scalability. Promotes Low Coupling through event-driven architectures." data-examples="Kafka, Pulsar, Kinesis, Flink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg><span class="tech-tile-name">Event Streaming</span></div>
-                            <div class="tech-tile" data-title="Search Engines" data-description="Indexes and searches large text-based datasets with relevance ranking." data-solves="Solves the Law of Latency for complex text queries over massive datasets where traditional databases would be too slow." data-examples="Elasticsearch, Solr, OpenSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span class="tech-tile-name">Search Engines</span></div>
-                            <div class="tech-tile" data-title="Containers" data-description="Lightweight, OS-level virtualization that packages an application and its dependencies." data-solves="Manages Coupling between an application and its environment, ensuring consistency from development to production." data-examples="Docker, containerd, Podman, CRI-O"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg><span class="tech-tile-name">Containers</span></div>
-                            <div class="tech-tile" data-title="Orchestration" data-description="Automates deployment, scaling, and management of containerized applications." data-solves="Directly manages the Economic Triangle (scalability vs. cost) and Availability at a large scale by automating resilience." data-examples="Kubernetes, Nomad, OpenShift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path><path d="M12 22V12"></path><path d="M17 9l-5 2.5-5-2.5"></path><path d="M7 15l5 2.5 5-2.5"></path></svg><span class="tech-tile-name">Orchestration</span></div>
-                            <div class="tech-tile" data-title="Service Discovery" data-description="A mechanism for services to locate each other dynamically in a cluster." data-solves="Manages Coupling by removing hardcoded endpoints, which is essential for scalability and resilience in dynamic environments." data-examples="Consul, etcd, Kubernetes DNS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span class="tech-tile-name">Service Discovery</span></div>
-                            <div class="tech-tile" data-title="Coordination" data-description="Systems to manage distributed consensus, leader election, and locks." data-solves="Directly addresses the CAP Theorem by providing tools to build strongly Consistent (CP) systems in a distributed environment." data-examples="Zookeeper, etcd, Consul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span class="tech-tile-name">Coordination</span></div>
-                            <div class="tech-tile" data-title="Data Warehouses" data-description="Analytical databases optimized for large, complex queries over historical data." data-solves="Addresses Performance and the Economic Triangle by separating fast transactional workloads (OLTP) from slow analytical workloads (OLAP)." data-examples="Snowflake, BigQuery, Redshift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg><span class="tech-tile-name">Data Warehouses</span></div>
-                            <div class="tech-tile" data-title="Data Lakes" data-description="A centralized repository for storing vast quantities of raw data in any format." data-solves="Addresses the Economic Triangle by providing cheap, scalable storage for big data, trading the structure of a warehouse for flexibility." data-examples="Hadoop HDFS, AWS S3, Delta Lake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg><span class="tech-tile-name">Data Lakes</span></div>
-                            <div class="tech-tile" data-title="Observability" data-description="Tools to collect metrics, logs, and traces to provide visibility into a system's health." data-solves="A meta-tool that doesn't tame a force directly, but allows you to observe how the forces are impacting your system, which is critical for maintaining Availability and Performance." data-examples="Prometheus, Grafana, OpenTelemetry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.94a10 10 0 1 1 19.88 0"></path><path d="M12 17.94v-10"></path></svg><span class="tech-tile-name">Observability</span></div>
+                            <div class="tech-tile" data-title="Load Balancer" data-description="Distributes incoming network traffic across multiple backend servers." data-solves="Helps you scale out your app to handle more traffic (Scalability) and keeps things running by routing around failed servers (Availability)." data-examples="Nginx, HAProxy, AWS ELB, Traefik"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 3.13a4 4 0 0 1 0 7.75"></path><path d="M17.25 4.93a4 4 0 0 1 0 7.75"></path><path d="M19 10V4"></path><path d="M19 20v-6"></path><path d="M5 20v-6"></path><path d="M5 10V4"></path><path d="M8 3.13a4 4 0 0 0 0 7.75"></path><path d="M6.75 4.93a4 4 0 0 0 0 7.75"></path><path d="M12 12h.01"></path></svg><span class="tech-tile-name">Load Balancers</span></div>
+                            <div class="tech-tile" data-title="API Gateway" data-description="A single entry point for all client requests, routing them to various microservices. It can also handle authentication, rate limiting, and logging." data-solves="Acts as a front door, hiding the complexity of your backend services. This keeps things clean (Low Coupling) by handling common tasks like auth and rate limiting in one place." data-examples="Kong, Apigee, AWS API Gateway, Istio"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V12M6 12H2v10h4V12zm16 0h-4v10h4V12zM12 2L6 7h12L12 2z"></path></svg><span class="tech-tile-name">API Gateways</span></div>
+                            <div class="tech-tile" data-title="CDN" data-description="A geographically distributed network of proxy servers that cache content close to users." data-solves="Fights the Law of Latency by caching your content physically closer to your users. This makes your site faster and more reliable." data-examples="Cloudflare, Akamai, Fastly, AWS CloudFront"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg><span class="tech-tile-name">CDNs</span></div>
+                            <div class="tech-tile" data-title="Relational DBs" data-description="Structured data storage with strict schema, ACID transactions, and SQL querying." data-solves="These databases are all about getting Consistency right. They trade some scaling flexibility for the guarantee that your data is always correct and reliable (ACID)." data-examples="PostgreSQL, MySQL, Oracle, SQLite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"></path><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path></svg><span class="tech-tile-name">Relational DBs</span></div>
+                            <div class="tech-tile" data-title="NoSQL Databases" data-description="Non-relational databases (documents, key-value, columnar, graph)." data-solves="These often choose Availability over perfect consistency, making them incredibly easy to scale out horizontally. A great tool for managing the cost-performance balance." data-examples="MongoDB, Cassandra, Redis, Neo4j"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="12" y1="18" x2="12" y2="12"></line><line x1="9" y1="15" x2="15" y2="15"></line></svg><span class="tech-tile-name">NoSQL Databases</span></div>
+                            <div class="tech-tile" data-title="Caches" data-description="An in-memory data store that keeps frequently accessed data for very fast retrieval." data-solves="Your number one weapon against latency. By keeping frequently used data in super-fast memory, you trade a little data freshness for a huge speed boost." data-examples="Redis, Memcached, Hazelcast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg><span class="tech-tile-name">Caches</span></div>
+                            <div class="tech-tile" data-title="Message Queues" data-description="Middleware for asynchronous communication between producers and consumers." data-solves="Lets your services talk to each other without being tightly connected. They act as a buffer, making your whole system more resilient if one part slows down or fails." data-examples="RabbitMQ, Kafka, ActiveMQ, SQS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="12" x2="2" y2="12"></line><polyline points="16 6 22 12 16 18"></polyline><polyline points="8 18 2 12 8 6"></polyline></svg><span class="tech-tile-name">Message Queues</span></div>
+                            <div class="tech-tile" data-title="Event Streaming" data-description="Real-time data pipelines for high-throughput events, often using a durable log." data-solves="Think of it as a super-powered message queue for massive streams of real-time data. It's built for scale and encourages loosely coupled, event-driven designs." data-examples="Kafka, Pulsar, Kinesis, Flink"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg><span class="tech-tile-name">Event Streaming</span></div>
+                            <div class="tech-tile" data-title="Search Engines" data-description="Indexes and searches large text-based datasets with relevance ranking." data-solves="When you need to find a needle in a haystack of text, a regular database is too slow. Search engines are purpose-built to answer complex text queries with lightning speed." data-examples="Elasticsearch, Solr, OpenSearch"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg><span class="tech-tile-name">Search Engines</span></div>
+                            <div class="tech-tile" data-title="Containers" data-description="Lightweight, OS-level virtualization that packages an application and its dependencies." data-solves="Packages your app and all its dependencies into a neat little box. This ensures it runs the exact same way on your laptop as it does in production, solving the 'it works on my machine' problem." data-examples="Docker, containerd, Podman, CRI-O"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg><span class="tech-tile-name">Containers</span></div>
+                            <div class="tech-tile" data-title="Orchestration" data-description="Automates deployment, scaling, and management of containerized applications." data-solves="This is the brain that manages all your containers. It automatically handles scaling, healing, and deployment, letting you run massive applications reliably and cost-effectively." data-examples="Kubernetes, Nomad, OpenShift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path><path d="M12 22V12"></path><path d="M17 9l-5 2.5-5-2.5"></path><path d="M7 15l5 2.5 5-2.5"></path></svg><span class="tech-tile-name">Orchestration</span></div>
+                            <div class="tech-tile" data-title="Service Discovery" data-description="A mechanism for services to locate each other dynamically in a cluster." data-solves="In a world where servers come and go, this is how services find each other without using fragile, hardcoded IP addresses. It's essential for any scalable, dynamic system." data-examples="Consul, etcd, Kubernetes DNS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg><span class="tech-tile-name">Service Discovery</span></div>
+                            <div class="tech-tile" data-title="Coordination" data-description="Systems to manage distributed consensus, leader election, and locks." data-solves="When you absolutely need to agree on something across multiple servers (like who's the leader), these tools provide the foundation for building strongly consistent (CP) systems." data-examples="Zookeeper, etcd, Consul"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg><span class="tech-tile-name">Coordination</span></div>
+                            <div class="tech-tile" data-title="Data Warehouses" data-description="Analytical databases optimized for large, complex queries over historical data." data-solves="Separates your day-to-day operational data from your big-picture analytical data. This lets you run huge, complex queries for business intelligence without slowing down your main application." data-examples="Snowflake, BigQuery, Redshift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg><span class="tech-tile-name">Data Warehouses</span></div>
+                            <div class="tech-tile" data-title="Data Lakes" data-description="A centralized repository for storing vast quantities of raw data in any format." data-solves="A massive, affordable storage pool for all your data, in any format. You trade the rigid structure of a warehouse for incredible flexibility and low cost." data-examples="Hadoop HDFS, AWS S3, Delta Lake"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path><path d="M22 12A10 10 0 0 0 12 2v10z"></path></svg><span class="tech-tile-name">Data Lakes</span></div>
+                            <div class="tech-tile" data-title="Observability" data-description="Tools to collect metrics, logs, and traces to provide visibility into a system's health." data-solves="This is how you see what's actually happening inside your complex system. It gives you the logs, metrics, and traces you need to understand performance and keep things running smoothly." data-examples="Prometheus, Grafana, OpenTelemetry"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.06 12.94a10 10 0 1 1 19.88 0"></path><path d="M12 17.94v-10"></path></svg><span class="tech-tile-name">Observability</span></div>
                         </div>
                     </div>`,
                 model: `
                     <div class="container">
                         <h1 class="page-title">The Mental Model</h1>
-                        <p class="page-subtitle">A repeatable, first-principles framework for approaching any system design problem, moving from ambiguity to a clear set of conscious trade-offs.</p>
+                        <p class="page-subtitle">Here's a repeatable, four-step playbook for tackling any system design problem. It's designed to take you from a vague idea to a clear, well-reasoned architecture.</p>
                         <div class="layer-container">
-                            <div class="layer card"><h2 class="layer-title">Step 1: Deconstruct the Problem</h2><p class="layer-subtitle">Ask questions, don't state solutions</p><p class="card-content">Start by defining the constraints. What is the expected scale (QPS, data size)? What are the latency requirements? What are the availability and consistency needs? These non-functional requirements will dictate your architecture more than any feature list.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 2: Start with the Simplest Thing</h2><p class="layer-subtitle">Establish a baseline</p><p class="card-content">Begin with a single server, a single application, a single database. This is your baseline. Now, use the requirements from Step 1 to prove, with back-of-the-envelope calculations, why this simple solution will fail. This grounds your design in reality.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 3: Identify & Eliminate Bottlenecks</h2><p class="layer-subtitle">Apply the primitives and forces</p><p class="card-content">Use the language of primitives. Is the bottleneck Computation (CPU maxed out)? Or is it Data at Rest (database writes are too slow)? By identifying the specific primitive that is failing, the category of solution (e.g., 'scale computation' or 'scale storage') becomes obvious.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 4: Iterate & Choose Your Trade-offs</h2><p class="layer-subtitle">The art of engineering</p><p class="card-content">Every solution introduces a new problem. A cache solves latency but introduces stale data. Microservices solve organizational scaling but introduce network unreliability. Consciously articulate these trade-offs. The final design is not a perfect solution; it's a well-reasoned set of compromises.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Step 1: Deconstruct the Problem</h2><p class="layer-subtitle">Ask questions, don't state solutions</p><p class="card-content">Before you write a single line of code, ask questions. What's the expected scale (requests per second, data size)? How fast does it need to be? How reliable? These 'non-functional' requirements are actually the most important part—they'll shape your design more than any feature list.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Step 2: Start with the Simplest Thing</h2><p class="layer-subtitle">Establish a baseline</p><p class="card-content">Always start with the simplest possible solution: one server, one app, one database. This is your baseline. Now, use the requirements from Step 1 to figure out where and why this simple setup will break. This quick 'napkin math' exercise is the best way to ground your design in reality.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Step 3: Identify & Eliminate Bottlenecks</h2><p class="layer-subtitle">Apply the primitives and forces</p><p class="card-content">Now, pinpoint the bottleneck using our primitives. Is the CPU maxed out (a Computation problem)? Is the database struggling to keep up (a Data at Rest problem)? Once you identify the specific primitive that's under stress, the right category of solution becomes much clearer.</p></div>
+                            <div class="layer card"><h2 class="layer-title">Step 4: Iterate & Choose Your Trade-offs</h2><p class="layer-subtitle">The art of engineering</p><p class="card-content">Remember, there's no silver bullet. Every solution you add creates a new trade-off. A cache speeds things up but can serve stale data. Microservices help teams move fast but add network complexity. The goal isn't a 'perfect' design, but a well-reasoned set of compromises that you've chosen consciously.</p></div>
                         </div>
                     </div>`,
                 timeline: `
                     <div class="container">
                         <h1 class="page-title">Timeline of Evolution</h1>
-                        <p class="page-subtitle">Understanding the present requires knowing the past. This timeline traces the co-evolution of hardware, networking, and software, showing how each domain's breakthroughs enabled the next.</p>
+                        <p class="page-subtitle">To understand where we are today, we have to look at how we got here. This timeline shows how hardware, networking, and software have always been in a dance, with breakthroughs in one area paving the way for the next.</p>
                         
                         <div class="card">
-                            <div class="timeline-item"><h3><strong>Pre-1950s:</strong> Mechanical Roots to Early Electronic Machines</h3><p class="card-content">Mechanical calculators (Babbage) and punched-card looms set the theoretical foundation. Turing's theoretical machine defined computation, leading to the first machine code programming.</p></div>
-                            <div class="timeline-item"><h3><strong>1950s–1960s:</strong> Birth of Digital Computers</h3><p class="card-content">Vacuum-tube computers like ENIAC and magnetic core memory emerged. The ARPANET kicked off packet-switched networks in 1969, while high-level languages like Fortran and COBOL appeared.</p></div>
-                            <div class="timeline-item"><h3><strong>1970s:</strong> Microprocessors and Network Expansion</h3><p class="card-content">The Intel 4004 microprocessor started the microcomputer era. Ethernet was invented for LANs, TCP/IP protocols were formulated, and UNIX, written in C, became foundational for future OS design.</p></div>
-                            <div class="timeline-item"><h3><strong>1980s:</strong> PC Revolution and Commercial Internet</h3><p class="card-content">Personal computers like the IBM PC emerged, GUIs became common, and Ethernet with TCP/IP dominated local and wide-area networking, setting the stage for the public internet.</p></div>
-                            <div class="timeline-item"><h3><strong>1990s:</strong> Web, Global Networks & Multimedia</h3><p class="card-content">Tim Berners-Lee created the first webpage in 1990, and the Web went mainstream. Search engines, email, and e-commerce revolutionized how software was delivered and consumed globally.</p></div>
-                            <div class="timeline-item"><h3><strong>2000s:</strong> Ubiquitous Connectivity & Cloud Beginnings</h3><p class="card-content">PCs and internet access became ubiquitous. The foundations of cloud architecture, mobile applications, and social networks were laid, shifting focus from desktop to distributed computing.</p></div>
-                            <div class="timeline-item"><h3><strong>2010s:</strong> Cloud-Native, Big Data & AI Foundations</h3><p class="card-content">Cloud data centers scaled massively. Cloud-native architectures (containers, orchestration), big data analytics, and foundational AI/ML frameworks like TensorFlow emerged.</p></div>
-                            <div class="timeline-item"><h3><strong>2020s:</strong> Compute Power & Distributed Scale</h3><p class="card-content">High core-count CPUs became common, and distributed computing reached exaFLOPS scale. AI infrastructure grew rapidly, and edge computing gained traction with 5G rollouts.</p></div>
-                            <div class="timeline-item"><h3><strong>2030s (Predicted):</strong> Intelligent, Ubiquitous Computing</h3><p class="card-content">Proliferation of edge/IoT devices and specialized AI hardware. 6G networks with AI-driven routing are expected, alongside AI-first software stacks and decentralized cloud architectures.</p></div>
+                            <div class="timeline-item"><h3><strong>Pre-1950s:</strong> Mechanical Roots to Early Electronic Machines</h3><p class="card-content">The seeds of computing were planted with mechanical calculators and punch-card looms. Alan Turing's groundbreaking theory defined what a computer could be, paving the way for the very first programs written in raw machine code.</p></div>
+                            <div class="timeline-item"><h3><strong>1950s–1960s:</strong> Birth of Digital Computers</h3><p class="card-content">The first true digital computers, room-sized behemoths running on vacuum tubes, came to life. In 1969, ARPANET sent its first message, kicking off the networking revolution, while new 'high-level' languages like Fortran and COBOL made programming more accessible.</p></div>
+                            <div class="timeline-item"><h3><strong>1970s:</strong> Microprocessors and Network Expansion</h3><p class="card-content">The game changed with the Intel 4004, the first microprocessor, which put a computer on a chip. Ethernet was born, connecting computers in the same building, while the rules of the internet (TCP/IP) were being written. Meanwhile, the UNIX operating system set the standard for decades to come.</p></div>
+                            <div class="timeline-item"><h3><strong>1980s:</strong> PC Revolution and Commercial Internet</h3><p class="card-content">The computer arrived on our desks. The IBM PC and Apple's graphical interfaces made computing personal. Behind the scenes, the networking standards were solidifying, setting the stage for a truly global, public internet.</p></div>
+                            <div class="timeline-item"><h3><strong>1990s:</strong> Web, Global Networks & Multimedia</h3><p class="card-content">In 1990, Tim Berners-Lee switched on the World Wide Web, and everything changed. Suddenly, software wasn't just on a disk; it was delivered through browsers, search engines, and email, connecting the entire globe.</p></div>
+                            <div class="timeline-item"><h3><strong>2000s:</strong> Ubiquitous Connectivity & Cloud Beginnings</h3><p class="card-content">The internet became a utility, like electricity. As connectivity became ubiquitous, the focus shifted from the desktop to massive, distributed systems, laying the groundwork for the cloud, smartphones, and social media.</p></div>
+                            <div class="timeline-item"><h3><strong>2010s:</strong> Cloud-Native, Big Data & AI Foundations</h3><p class="card-content">The cloud came of age. Data centers grew to an unimaginable scale, and we learned how to build for them with containers and orchestration. This was the decade of 'big data' and the birth of the AI frameworks that power today's revolution.</p></div>
+                            <div class="timeline-item"><h3><strong>2020s:</strong> Compute Power & Distributed Scale</h3><p class="card-content">We're living in an era of abundant computation. CPUs with dozens of cores are the norm, and AI infrastructure is growing at a breakneck pace. With 5G, we're pushing computing power out from the data center to the 'edge', closer to users and devices.</p></div>
+                            <div class="timeline-item"><h3><strong>2030s (Predicted):</strong> Intelligent, Ubiquitous Computing</h3><p class="card-content">Looking ahead, we can expect a world filled with intelligent devices and specialized AI chips. Software will be built 'AI-first', running on smarter networks and a more decentralized cloud, bringing computation and intelligence everywhere.</p></div>
                         </div>
 
                         <hr class="section-divider">
@@ -728,6 +844,25 @@
                     header.classList.remove('scrolled');
                 }
             });
+
+            // Theme Toggle Logic
+            function setTheme(theme) {
+                if (theme === 'dark') {
+                    document.body.classList.add('dark-mode');
+                } else {
+                    document.body.classList.remove('dark-mode');
+                }
+                localStorage.setItem('theme', theme);
+            }
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+                setTheme(newTheme);
+            });
+
+            // Set initial theme based on preference or storage
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            setTheme(savedTheme);
         });
     </script>
 </body>
