@@ -10,6 +10,7 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Poppins:wght@600;700&display=swap"
         rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&display=swap" rel="stylesheet">
     <style>
         /* CSS is embedded directly here for a single-file experience */
         :root {
@@ -106,6 +107,11 @@
             background-color: rgba(30, 30, 30, 0.8);
         }
 
+        body.dark-mode .logo .logo-svg {
+            /* Inverts the logo color in dark mode for visibility */
+            filter: invert(1);
+        }
+
         header.scrolled {
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
@@ -118,18 +124,27 @@
             margin: 0 auto;
         }
 
-        .logo a {
-            font-family: 'Poppins', sans-serif;
-            color: var(--text-primary);
-            font-size: 1.5rem;
-            font-weight: 700;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            cursor: pointer;
+        .nav-right-section {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
         }
 
-        .logo a:hover {
-            color: var(--accent-blue);
+        .logo a {
+            text-decoration: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .logo .logo-svg {
+            width: 150px;
+            height: auto;
+            transition: opacity 0.3s ease, filter 0.3s ease;
+        }
+
+        .logo a:hover .logo-svg {
+            opacity: 0.8;
         }
 
         .nav-links {
@@ -142,9 +157,8 @@
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
-            font-weight: 400;
-            font-size: 0.95rem;
-            /* Reduced font size */
+            font-weight: 500;
+            font-size: 1rem;
             position: relative;
             transition: color 0.3s ease;
             cursor: pointer;
@@ -171,6 +185,39 @@
         .nav-links a.active::after {
             width: 100%;
             left: 0;
+        }
+
+        .location-text {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            font-weight: 500;
+            border-left: 1px solid var(--border-blue);
+            padding-left: 1.5rem;
+            transition: color 0.3s ease, border-color 0.3s ease;
+            white-space: nowrap;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .location-text img {
+            width: 20px;
+            height: auto;
+            border-radius: 3px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .location-text svg {
+            width: 16px;
+            height: 16px;
+            stroke-width: 2.5;
+            color: var(--text-secondary);
+        }
+
+        .location-text .globe-icon {
+            width: 20px;
+            height: 20px;
+            stroke-width: 0;
         }
 
         .theme-toggle-btn {
@@ -216,8 +263,8 @@
         }
 
         main {
-            padding-top: 100px;
-            /* Offset for fixed header */
+            padding-top: 120px;
+            /* Offset for potentially taller fixed header */
             min-height: calc(100vh - 180px);
             /* Ensure footer is pushed down */
             transition: opacity 0.3s ease, transform 0.3s ease;
@@ -236,7 +283,6 @@
         }
 
         .hero .tagline {
-            font-size: 1.2rem;
             margin-bottom: 1.5rem;
         }
 
@@ -252,12 +298,13 @@
 
         .tagline {
             text-align: center;
+            font-family: 'Caveat', cursive;
             font-size: 1.1rem;
-            font-style: italic;
-            font-weight: 300;
+            font-weight: 700;
             color: var(--text-secondary);
             margin-top: -0.75rem;
             margin-bottom: 2.5rem;
+            letter-spacing: 1px;
         }
 
         .page-subtitle {
@@ -303,6 +350,31 @@
             transform: translateY(0);
         }
 
+        .card-with-image {
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-with-image .card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+        }
+
+        .card-with-image .card-text-content {
+            padding: 2rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-with-image .card-content {
+            flex-grow: 1;
+        }
+
         .card-title {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5rem;
@@ -322,8 +394,21 @@
 
         .layer {
             margin-bottom: 2rem;
-            border-left: 3px solid var(--accent-blue);
-            padding-left: 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .layer-image {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .layer-content {
+            flex-grow: 1;
         }
 
         .layer-title {
@@ -462,7 +547,27 @@
 
         /* Timeline Page Styles */
         .timeline-item {
-            margin-bottom: 2.5rem;
+            display: flex;
+            gap: 1.5rem;
+            align-items: flex-start;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--border-blue);
+        }
+
+        .timeline-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .timeline-image {
+            width: 150px;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-top: 5px;
+            flex-shrink: 0;
         }
 
         .timeline-item h3 {
@@ -508,6 +613,78 @@
             background-color: rgba(77, 148, 255, 0.05);
         }
 
+        /* Gratitude Page Styles */
+        .gratitude-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .gratitude-card .card-text-content {
+            align-items: center;
+            text-align: center;
+        }
+
+        .gratitude-icon {
+            margin-bottom: 1.5rem;
+        }
+
+        .gratitude-icon svg {
+            width: 50px;
+            height: 50px;
+            color: var(--accent-blue);
+            stroke-width: 1.5;
+        }
+
+        .gratitude-card .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .personal-note {
+            background-color: rgba(0, 64, 128, 0.03);
+            border-left: 4px solid var(--accent-blue);
+            padding: 2rem;
+            margin: 4rem 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        body.dark-mode .personal-note {
+            background-color: rgba(77, 148, 255, 0.05);
+        }
+
+        .personal-note p {
+            font-size: 1.1rem;
+            font-style: italic;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .final-gratitude-block {
+            margin-top: 4rem;
+            padding: 2.5rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px var(--shadow-color);
+        }
+
+        .final-gratitude-block svg {
+            width: 40px;
+            height: 40px;
+            color: var(--accent-blue);
+            stroke-width: 1.5;
+        }
+
+        .final-gratitude-block p {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--accent-blue);
+        }
 
         /* Footer */
         footer {
@@ -533,6 +710,201 @@
         .footer-links a:hover {
             text-decoration: underline;
         }
+
+        /* Responsive Design */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1002;
+            /* Above nav content */
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle svg {
+            width: 28px;
+            height: 28px;
+            color: var(--text-primary);
+            display: block;
+        }
+
+        .mobile-menu-toggle .close-icon {
+            display: none;
+        }
+
+        body.mobile-nav-open .mobile-menu-toggle .hamburger-icon {
+            display: none;
+        }
+
+        body.mobile-nav-open .mobile-menu-toggle .close-icon {
+            display: block;
+        }
+
+        .mobile-nav-backdrop {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 999;
+        }
+
+        body.mobile-nav-open .mobile-nav-backdrop {
+            display: block;
+        }
+
+        @media (max-width: 1100px) {
+            .logo .logo-svg {
+                width: 125px;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+
+            .nav-right-section {
+                gap: 1rem;
+            }
+
+            .location-text {
+                display: none;
+            }
+
+            .hero .page-title {
+                font-size: 3.2rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .nav-right-section {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 320px;
+                max-width: 90%;
+                height: 100vh;
+                background-color: var(--bg-secondary);
+                flex-direction: column;
+                align-items: flex-start;
+                justify-content: flex-start;
+                padding: 6rem 2rem 2rem 2rem;
+                gap: 2rem;
+                transform: translateX(100%);
+                transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+                box-shadow: -5px 0 25px rgba(0, 0, 0, 0.1);
+                z-index: 1001;
+            }
+
+            body.mobile-nav-open .nav-right-section {
+                transform: translateX(0);
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+                width: 100%;
+                border-bottom: 1px solid var(--border-blue);
+                padding-bottom: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+                font-weight: 500;
+            }
+
+            .location-text {
+                display: block;
+                border-left: none;
+                padding-left: 0;
+            }
+
+            .theme-toggle-btn {
+                margin-left: 0;
+                position: absolute;
+                top: 1.2rem;
+                left: 1.5rem;
+            }
+
+            .hero .page-title {
+                font-size: 2.8rem;
+            }
+
+            .page-title {
+                font-size: 2.4rem;
+            }
+
+        }
+
+        @media (max-width: 767px) {
+            header {
+                padding: 0.5rem 1rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+
+            .hero {
+                padding: 3rem 0 1rem 0;
+            }
+
+            .hero .page-title {
+                font-size: 2.2rem;
+                line-height: 1.3;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+
+            .layer {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .layer-image {
+                width: 100%;
+                height: 180px;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+            }
+
+
+            .layer-title {
+                font-size: 1.6rem;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            }
+
+            .footer-links {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .timeline-image {
+                width: 100%;
+                height: auto;
+                max-height: 200px;
+            }
+        }
     </style>
 </head>
 
@@ -540,35 +912,74 @@
 
     <header>
         <nav>
-            <div class="logo"><a data-page="home">The Reductionist's Lens</a></div>
-            <ul class="nav-links">
-                <li><a data-page="home" class="active">Home</a></li>
-                <li><a data-page="layers">The Layers</a></li>
-                <li><a data-page="primitives">The Primitives</a></li>
-                <li><a data-page="forces">The Forces</a></li>
-                <li><a data-page="model">The Mental Model</a></li>
-                <li><a data-page="timeline">Timeline</a></li>
-            </ul>
-            <button id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
-                <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+            <div class="logo">
+                <a data-page="home">
+                    <!-- Updated the logo as requested -->
+                    <img src="547c8192-1bf9-4ee3-8e83-f82aced8c9ed.png" alt="The Reductionist's Lens Logo" class="logo-svg">
+                </a>
+            </div>
+            <div class="nav-right-section">
+                <ul class="nav-links">
+                    <li><a data-page="home" class="active">Home</a></li>
+                    <li><a data-page="layers">The Layers</a></li>
+                    <li><a data-page="primitives">The Primitives</a></li>
+                    <li><a data-page="forces">The Forces</a></li>
+                    <li><a data-page="model">The Mental Model</a></li>
+                    <li><a data-page="timeline">Timeline</a></li>
+                    <li><a data-page="gratitude">Gratitude</a></li>
+                </ul>
+                <div class="location-text">
+                    <img src="https://flagcdn.com/w20/in.png" alt="India Flag">
+                    <span>Telangana, India</span>
+                    <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    <svg class="globe-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                        <defs>
+                            <linearGradient id="ocean" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4D94FF;"></stop>
+                                <stop offset="100%" style="stop-color:#005C99;"></stop>
+                            </linearGradient>
+                        </defs>
+                        <circle cx="12" cy="12" r="10" fill="url(#ocean)"></circle>
+                        <path fill="#66BB6A" d="M12.3,3.1c-0.2,0-0.4,0-0.6,0c-1.6,0.9-2.9,2.2-3.8,3.8c-0.5,0.8-0.8,1.7-1,2.6c-0.4,1.8-0.4,3.7,0.1,5.5 c0.3,1.2,0.9,2.3,1.7,3.3c0.1,0.1,0.2,0.2,0.3,0.3c-1.9-1.2-3.3-3.2-3.7-5.5c-0.5-2.6,0.2-5.3,1.8-7.3C8.9,4.1,10.5,3.3,12.3,3.1z"></path>
+                        <path fill="#A5D6A7" d="M17.4,15.8c-0.8-0.1-1.6-0.4-2.3-0.8c-1.5-0.9-2.6-2.2-3.3-3.8c-0.5-1.2-0.7-2.5-0.5-3.8c0.1-0.7,0.3-1.4,0.6-2 c0.5-1.1,1.3-2.1,2.3-2.8c1.6-1.1,3.6-1.4,5.4-0.8c1.6,0.5,2.9,1.7,3.6,3.2c0.4,0.8,0.6,1.7,0.6,2.6c0,1.9-0.8,3.7-2.2,5 c-0.8,0.7-1.7,1.2-2.7,1.5C18.4,15.8,17.9,15.9,17.4,15.8z"></path>
+                    </svg>
+                </div>
+                <button id="theme-toggle" class="theme-toggle-btn" title="Toggle theme">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+            <button id="mobile-menu-toggle" class="mobile-menu-toggle" title="Toggle menu">
+                <svg class="hamburger-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="5"></circle>
-                    <line x1="12" y1="1" x2="12" y2="3"></line>
-                    <line x1="12" y1="21" x2="12" y2="23"></line>
-                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                    <line x1="1" y1="12" x2="3" y2="12"></line>
-                    <line x1="21" y1="12" x2="23" y2="12"></line>
-                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-                <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
+                <svg class="close-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
                 </svg>
             </button>
         </nav>
     </header>
+
+    <div class="mobile-nav-backdrop"></div>
 
     <main id="main-content">
         <!-- Content will be injected here by JavaScript -->
@@ -614,13 +1025,17 @@
             const modalCloseBtn = document.getElementById('modal-close-btn');
             const header = document.querySelector('header');
             const themeToggle = document.getElementById('theme-toggle');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileNavBackdrop = document.querySelector('.mobile-nav-backdrop');
+
+
 
             const pageContent = {
                 home: `
                     <div class="hero">
                         <div class="container">
                             <h1 class="page-title">Ramu Mangalarapu's take on software architecture</h1>
-                            <p class="tagline">Somehow everything is related</p>
+                            <p class="tagline">Applying First Principles to Software, Life, and the Universe</p>
                             <p class="page-subtitle">
                                 Instead of memorizing complex frameworks, what if we could understand any system by breaking it down to its core truths? This is a thinking toolkit for developers and architects who want to build with clarity and conviction.
                             </p>
@@ -628,10 +1043,22 @@
                     </div>
                     <div class="container">
                         <div class="card-grid">
-                            <div class="card portal-card" data-page="layers"><h2 class="card-title">The Layers of Abstraction</h2><p class="card-content">Let's peel back the layers of a modern system, from the code you write all the way down to the silicon that runs it.</p></div>
-                            <div class="card portal-card" data-page="primitives"><h2 class="card-title">The Irreducible Primitives</h2><p class="card-content">Discover the 'atoms' of software—the handful of fundamental building blocks that make up every system you've ever seen.</p></div>
-                            <div class="card portal-card" data-page="forces"><h2 class="card-title">The Immutable Forces</h2><p class="card-content">Explore the 'laws of physics' for software. These are the inescapable trade-offs that shape every architectural decision, whether we realize it or not.</p></div>
-                            <div class="card portal-card" data-page="model"><h2 class="card-title">The Mental Model</h2><p class="card-content">Here's a simple, four-step framework you can use to tackle any system design problem with a clear, first-principles mindset.</p></div>
+                            <div class="card portal-card" data-page="layers">
+                                <h2 class="card-title">The Layers of Abstraction</h2>
+                                <p class="card-content">Let's peel back the layers of a modern system, from the code you write all the way down to the silicon that runs it.</p>
+                            </div>
+                            <div class="card portal-card" data-page="primitives">
+                                <h2 class="card-title">The Irreducible Primitives</h2>
+                                <p class="card-content">Discover the 'atoms' of software—the handful of fundamental building blocks that make up every system you've ever seen.</p>
+                            </div>
+                            <div class="card portal-card" data-page="forces">
+                                <h2 class="card-title">The Immutable Forces</h2>
+                                <p class="card-content">Explore the 'laws of physics' for software. These are the inescapable trade-offs that shape every architectural decision, whether we realize it or not.</p>
+                            </div>
+                            <div class="card portal-card" data-page="model">
+                                <h2 class="card-title">The Mental Model</h2>
+                                <p class="card-content">Here's a simple, four-step framework you can use to tackle any system design problem with a clear, first-principles mindset.</p>
+                            </div>
                         </div>
                     </div>`,
                 layers: `
@@ -639,11 +1066,31 @@
                         <h1 class="page-title">The Layers of Abstraction</h1>
                         <p class="page-subtitle">Every piece of software is a stack of abstractions, one on top of the other. When you understand these layers, you can debug tricky performance issues, reason about system behavior, and truly appreciate the 'magic' our modern tools provide.</p>
                         <div class="layer-container">
-                            <div class="layer card"><h2 class="layer-title">Layer 4: Application & Runtime</h2><p class="layer-subtitle">The world of your logic</p><p class="card-content">This is your world—the Go or JavaScript code you write every day. It's all managed by your language's runtime (like the Go Scheduler or the JS Event Loop). The real key here is to grasp how that runtime translates your elegant logic into concrete instructions for the machine.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 3: The C/C++ FFI</h2><p class="layer-subtitle">The bridge to the native world</p><p class="card-content">Think of this as the bridge to the native world. It's where your high-level language (like Go or JS) has to talk to the low-level, OS-native world of C. For anything that needs to be fast, understanding the 'toll' for crossing this bridge (like Cgo overhead) is critical.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 2: The OS Interface</h2><p class="layer-subtitle">The API to the Kernel (Syscalls)</p><p class="card-content">This is the one boundary you can't cheat. To do anything useful like read a file or send data over the network, your application *must* make a system call—a formal request to the OS kernel. Tools like \`strace\` let us peek behind the curtain and see the real work happening here.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 1: The Kernel</h2><p class="layer-subtitle">The master resource manager</p><p class="card-content">Welcome to the master resource manager. The kernel juggles everything: it decides which process gets the CPU, manages memory, and handles all network traffic. The performance of your entire system ultimately depends on how well this layer does its job.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Layer 0: The Hardware</h2><p class="layer-subtitle">The physical reality</p><p class="card-content">We've reached physical reality—the silicon itself. We're talking CPU cores, caches (L1/L2/L3), RAM, and the network card. Down here, the laws of physics are in charge. Grasping concepts like cache locality is the final piece of the puzzle for understanding true, bare-metal performance.</p></div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Layer 4: Application & Runtime</h2><p class="layer-subtitle">The world of your logic</p><p class="card-content">This is your world—the Go or JavaScript code you write every day. It's all managed by your language's runtime (like the Go Scheduler or the JS Event Loop). The real key here is to grasp how that runtime translates your elegant logic into concrete instructions for the machine.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Layer 3: The C/C++ FFI</h2><p class="layer-subtitle">The bridge to the native world</p><p class="card-content">Think of this as the bridge to the native world. It's where your high-level language (like Go or JS) has to talk to the low-level, OS-native world of C. For anything that needs to be fast, understanding the 'toll' for crossing this bridge (like Cgo overhead) is critical.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Layer 2: The OS Interface</h2><p class="layer-subtitle">The API to the Kernel (Syscalls)</p><p class="card-content">This is the one boundary you can't cheat. To do anything useful like read a file or send data over the network, your application *must* make a system call—a formal request to the OS kernel. Tools like \`strace\` let us peek behind the curtain and see the real work happening here.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Layer 1: The Kernel</h2><p class="layer-subtitle">The master resource manager</p><p class="card-content">Welcome to the master resource manager. The kernel juggles everything: it decides which process gets the CPU, manages memory, and handles all network traffic. The performance of your entire system ultimately depends on how well this layer does its job.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Layer 0: The Hardware</h2><p class="layer-subtitle">The physical reality</p><p class="card-content">We've reached physical reality—the silicon itself. We're talking CPU cores, caches (L1/L2/L3), RAM, and the network card. Down here, the laws of physics are in charge. Grasping concepts like cache locality is the final piece of the puzzle for understanding true, bare-metal performance.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>`,
                 primitives: `
@@ -698,27 +1145,60 @@
                         <h1 class="page-title">The Mental Model</h1>
                         <p class="page-subtitle">Here's a repeatable, four-step playbook for tackling any system design problem. It's designed to take you from a vague idea to a clear, well-reasoned architecture.</p>
                         <div class="layer-container">
-                            <div class="layer card"><h2 class="layer-title">Step 1: Deconstruct the Problem</h2><p class="layer-subtitle">Ask questions, don't state solutions</p><p class="card-content">Before you write a single line of code, ask questions. What's the expected scale (requests per second, data size)? How fast does it need to be? How reliable? These 'non-functional' requirements are actually the most important part—they'll shape your design more than any feature list.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 2: Start with the Simplest Thing</h2><p class="layer-subtitle">Establish a baseline</p><p class="card-content">Always start with the simplest possible solution: one server, one app, one database. This is your baseline. Now, use the requirements from Step 1 to figure out where and why this simple setup will break. This quick 'napkin math' exercise is the best way to ground your design in reality.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 3: Identify & Eliminate Bottlenecks</h2><p class="layer-subtitle">Apply the primitives and forces</p><p class="card-content">Now, pinpoint the bottleneck using our primitives. Is the CPU maxed out (a Computation problem)? Is the database struggling to keep up (a Data at Rest problem)? Once you identify the specific primitive that's under stress, the right category of solution becomes much clearer.</p></div>
-                            <div class="layer card"><h2 class="layer-title">Step 4: Iterate & Choose Your Trade-offs</h2><p class="layer-subtitle">The art of engineering</p><p class="card-content">Remember, there's no silver bullet. Every solution you add creates a new trade-off. A cache speeds things up but can serve stale data. Microservices help teams move fast but add network complexity. The goal isn't a 'perfect' design, but a well-reasoned set of compromises that you've chosen consciously.</p></div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Step 1: Deconstruct the Problem</h2><p class="layer-subtitle">Ask questions, don't state solutions</p><p class="card-content">Before you write a single line of code, ask questions. What's the expected scale (requests per second, data size)? How fast does it need to be? How reliable? These 'non-functional' requirements are actually the most important part—they'll shape your design more than any feature list.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Step 2: Start with the Simplest Thing</h2><p class="layer-subtitle">Establish a baseline</p><p class="card-content">Always start with the simplest possible solution: one server, one app, one database. This is your baseline. Now, use the requirements from Step 1 to figure out where and why this simple setup will break. This quick 'napkin math' exercise is the best way to ground your design in reality.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Step 3: Identify & Eliminate Bottlenecks</h2><p class="layer-subtitle">Apply the primitives and forces</p><p class="card-content">Now, pinpoint the bottleneck using our primitives. Is the CPU maxed out (a Computation problem)? Is the database struggling to keep up (a Data at Rest problem)? Once you identify the specific primitive that's under stress, the right category of solution becomes much clearer.</p>
+                                </div>
+                            </div>
+                            <div class="layer card">
+                                <div class="layer-content">
+                                    <h2 class="layer-title">Step 4: Iterate & Choose Your Trade-offs</h2><p class="layer-subtitle">The art of engineering</p><p class="card-content">Remember, there's no silver bullet. Every solution you add creates a new trade-off. A cache speeds things up but can serve stale data. Microservices help teams move fast but add network complexity. The goal isn't a 'perfect' design, but a well-reasoned set of compromises that you've chosen consciously.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>`,
                 timeline: `
                     <div class="container">
                         <h1 class="page-title">Timeline of Evolution</h1>
                         <p class="page-subtitle">To understand where we are today, we have to look at how we got here. This timeline shows how hardware, networking, and software have always been in a dance, with breakthroughs in one area paving the way for the next.</p>
-                        
                         <div class="card">
-                            <div class="timeline-item"><h3><strong>Pre-1950s:</strong> Mechanical Roots to Early Electronic Machines</h3><p class="card-content">The seeds of computing were planted with mechanical calculators and punch-card looms. Alan Turing's groundbreaking theory defined what a computer could be, paving the way for the very first programs written in raw machine code.</p></div>
-                            <div class="timeline-item"><h3><strong>1950s–1960s:</strong> Birth of Digital Computers</h3><p class="card-content">The first true digital computers, room-sized behemoths running on vacuum tubes, came to life. In 1969, ARPANET sent its first message, kicking off the networking revolution, while new 'high-level' languages like Fortran and COBOL made programming more accessible.</p></div>
-                            <div class="timeline-item"><h3><strong>1970s:</strong> Microprocessors and Network Expansion</h3><p class="card-content">The game changed with the Intel 4004, the first microprocessor, which put a computer on a chip. Ethernet was born, connecting computers in the same building, while the rules of the internet (TCP/IP) were being written. Meanwhile, the UNIX operating system set the standard for decades to come.</p></div>
-                            <div class="timeline-item"><h3><strong>1980s:</strong> PC Revolution and Commercial Internet</h3><p class="card-content">The computer arrived on our desks. The IBM PC and Apple's graphical interfaces made computing personal. Behind the scenes, the networking standards were solidifying, setting the stage for a truly global, public internet.</p></div>
-                            <div class="timeline-item"><h3><strong>1990s:</strong> Web, Global Networks & Multimedia</h3><p class="card-content">In 1990, Tim Berners-Lee switched on the World Wide Web, and everything changed. Suddenly, software wasn't just on a disk; it was delivered through browsers, search engines, and email, connecting the entire globe.</p></div>
-                            <div class="timeline-item"><h3><strong>2000s:</strong> Ubiquitous Connectivity & Cloud Beginnings</h3><p class="card-content">The internet became a utility, like electricity. As connectivity became ubiquitous, the focus shifted from the desktop to massive, distributed systems, laying the groundwork for the cloud, smartphones, and social media.</p></div>
-                            <div class="timeline-item"><h3><strong>2010s:</strong> Cloud-Native, Big Data & AI Foundations</h3><p class="card-content">The cloud came of age. Data centers grew to an unimaginable scale, and we learned how to build for them with containers and orchestration. This was the decade of 'big data' and the birth of the AI frameworks that power today's revolution.</p></div>
-                            <div class="timeline-item"><h3><strong>2020s:</strong> Compute Power & Distributed Scale</h3><p class="card-content">We're living in an era of abundant computation. CPUs with dozens of cores are the norm, and AI infrastructure is growing at a breakneck pace. With 5G, we're pushing computing power out from the data center to the 'edge', closer to users and devices.</p></div>
-                            <div class="timeline-item"><h3><strong>2030s (Predicted):</strong> Intelligent, Ubiquitous Computing</h3><p class="card-content">Looking ahead, we can expect a world filled with intelligent devices and specialized AI chips. Software will be built 'AI-first', running on smarter networks and a more decentralized cloud, bringing computation and intelligence everywhere.</p></div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>Pre-1950s:</strong> Mechanical Roots to Early Electronic Machines</h3><p class="card-content">The seeds of computing were planted with mechanical calculators and punch-card looms. Alan Turing's groundbreaking theory defined what a computer could be, paving the way for the very first programs written in raw machine code.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>1950s–1960s:</strong> Birth of Digital Computers</h3><p class="card-content">The first true digital computers, room-sized behemoths running on vacuum tubes, came to life. In 1969, ARPANET sent its first message, kicking off the networking revolution, while new 'high-level' languages like Fortran and COBOL made programming more accessible.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>1970s:</strong> Microprocessors and Network Expansion</h3><p class="card-content">The game changed with the Intel 4004, the first microprocessor, which put a computer on a chip. Ethernet was born, connecting computers in the same building, while the rules of the internet (TCP/IP) were being written. Meanwhile, the UNIX operating system set the standard for decades to come.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>1980s:</strong> PC Revolution and Commercial Internet</h3><p class="card-content">The computer arrived on our desks. The IBM PC and Apple's graphical interfaces made computing personal. Behind the scenes, the networking standards were solidifying, setting the stage for a truly global, public internet.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>1990s:</strong> Web, Global Networks & Multimedia</h3><p class="card-content">In 1990, Tim Berners-Lee switched on the World Wide Web, and everything changed. Suddenly, software wasn't just on a disk; it was delivered through browsers, search engines, and email, connecting the entire globe.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>2000s:</strong> Ubiquitous Connectivity & Cloud Beginnings</h3><p class="card-content">The internet became a utility, like electricity. As connectivity became ubiquitous, the focus shifted from the desktop to massive, distributed systems, laying the groundwork for the cloud, smartphones, and social media.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>2010s:</strong> Cloud-Native, Big Data & AI Foundations</h3><p class="card-content">The cloud came of age. Data centers grew to an unimaginable scale, and we learned how to build for them with containers and orchestration. This was the decade of 'big data' and the birth of the AI frameworks that power today's revolution.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>2020s:</strong> Compute Power & Distributed Scale</h3><p class="card-content">We're living in an era of abundant computation. CPUs with dozens of cores are the norm, and AI infrastructure is growing at a breakneck pace. With 5G, we're pushing computing power out from the data center to the 'edge', closer to users and devices.</p></div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-content"><h3><strong>2030s (Predicted):</strong> Intelligent, Ubiquitous Computing</h3><p class="card-content">Looking ahead, we can expect a world filled with intelligent devices and specialized AI chips. Software will be built 'AI-first', running on smarter networks and a more decentralized cloud, bringing computation and intelligence everywhere.</p></div>
+                            </div>
                         </div>
 
                         <hr class="section-divider">
@@ -741,7 +1221,72 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>`
+                    </div>`,
+                gratitude: `
+                    <div class="container">
+                        <h1 class="page-title">A Note of Endless Gratitude</h1>
+                        <p class="page-subtitle">
+                            A humble acknowledgment to every known and unknown hand that has shaped the world of technology, making possible the work we do and the lives we're able to live.
+                        </p>
+
+                        <div class="gratitude-grid">
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"></circle><path d="M20.2 20.2c2.04-2.03.02-5.91-4.3-9.24-4.32-3.33-8.2-5.35-10.24-3.3"></path><path d="M3.8 3.8c-2.04 2.03-.02 5.91 4.3 9.24 4.32 3.33 8.2 5.35 10.24 3.3"></path><path d="M12 22V2"></path></svg></div>
+                                <h2 class="card-title">The Scientists & Thinkers</h2>
+                                <p class="card-content">To those who uncovered the laws of physics and math, reminding us that every equation and every force belongs to all of humanity.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"></circle><path d="M12 3v2M12 19v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M3 12h2M19 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"></path><circle cx="6" cy="7" r="3"></circle><path d="M6 1v2M6 11v2M1.8 3.2l1.4 1.4M10.2 10.8l1.4 1.4M1 7h2M11 7h2M1.8 10.8l1.4-1.4M10.2 3.2l1.4 1.4"></path><circle cx="18" cy="17" r="3"></circle><path d="M18 11v2M18 21v2M13.8 13.2l1.4 1.4M22.2 20.8l1.4 1.4M13 17h2M23 17h2M13.8 20.8l1.4-1.4M22.2 13.2l1.4 1.4"></path></svg></div>
+                                <h2 class="card-title">The First Builders</h2>
+                                <p class="card-content">To the engineers who built the first machines, from Turing’s vision to the room-sized computers that pulsed like the heartbeat of a new era.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2" ry="2"></rect><path d="M9 2V8M15 2V8M9 16V22M15 16V22M2 9H8M2 15H8M16 9H22M16 15H22M9 9H15M9 15H15"></path></svg></div>
+                                <h2 class="card-title">The Silicon Tamers</h2>
+                                <p class="card-content">To those who taught sand to think—the transistor pioneers and chip architects whose designs live in every pocket and data center.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg></div>
+                                <h2 class="card-title">The Keepers of the Invisible</h2>
+                                <p class="card-content">To the custodians of the 13 root DNS servers, the 550+ undersea cables, and the miracle of the OSI model that stitches our world together.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12.5a2.5 2.5 0 0 1 0 5H4"></path><path d="M2 10h20"></path></svg></div>
+                                <h2 class="card-title">The Guardians of Language</h2>
+                                <p class="card-content">To the authors of 9,000+ RFCs and the councils (IETF, W3C, etc.) who ensured we speak a common digital tongue across all borders.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></div>
+                                <h2 class="card-title">The Torch Bearers</h2>
+                                <p class="card-content">To the open source foundations (Linux, Apache, CNCF, and more) who have championed the spirit of collaboration for decades.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"></path><path d="M14.5 4.5c-2.4 0-4.5 2.1-4.5 4.5 0 1.3.6 2.5 1.5 3.3L12 13l.5.2c.9-.8 1.5-2 1.5-3.3 0-2.4-2.1-4.5-4.5-4.5z"></path></svg></div>
+                                <h2 class="card-title">The Global Communities</h2>
+                                <p class="card-content">To the millions who maintain kernels, drivers, databases, libraries, and tools—the invisible scaffolding that powers our visible world.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"></path><path d="M12 2a7 7 0 0 0-7 7c0 3.04 1.63 5.58 4 6.67V18h6v-2.33c2.37-1.09 4-3.63 4-6.67a7 7 0 0 0-7-7z"></path></svg></div>
+                                <h2 class="card-title">The Visionary Creators</h2>
+                                <p class="card-content">To the minds behind Kubernetes, Kafka, PostgreSQL, Python, Go, and thousands more—projects that are now the air we breathe as engineers.</p>
+                            </div>
+                            <div class="gratitude-card card">
+                                <div class="gratitude-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                                <h2 class="card-title">The Unsung Heroes</h2>
+                                <p class="card-content">To the sysadmins, testers, reviewers, technical writers, mentors, and professors who put cooperation above ego, every single day.</p>
+                            </div>
+                        </div>
+
+                        <div class="personal-note">
+                            <p>And on a personal note—immense gratitude for the opportunity this ecosystem provides. It allows talent from India to collaborate seamlessly with global teams, contributing to a shared technological future. It's a humbling realization that our individual efforts are magnified by a worldwide community, a testament to a journey built together, across all borders.</p>
+                        </div>
+
+                        <div class="final-gratitude-block card">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"></path></svg>
+                            <p>Thank you for reading. ✨</p>
+                        </div>
+                    </div>
+                `
             };
 
             function openModal(tileData) {
@@ -843,6 +1388,33 @@
                 } else {
                     header.classList.remove('scrolled');
                 }
+            });
+
+            // Mobile Menu Logic
+            function openMobileMenu() {
+                document.body.classList.add('mobile-nav-open');
+            }
+
+            function closeMobileMenu() {
+                document.body.classList.remove('mobile-nav-open');
+            }
+
+            mobileMenuToggle.addEventListener('click', () => {
+                if (document.body.classList.contains('mobile-nav-open')) {
+                    closeMobileMenu();
+                } else {
+                    openMobileMenu();
+                }
+            });
+
+            mobileNavBackdrop.addEventListener('click', closeMobileMenu);
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (document.body.classList.contains('mobile-nav-open')) {
+                        closeMobileMenu();
+                    }
+                });
             });
 
             // Theme Toggle Logic
