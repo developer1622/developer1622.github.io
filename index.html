@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,12 +11,19 @@
     <style>
         /* CSS is embedded directly here for a single-file experience */
         :root {
-            --bg-primary: #FDFDFA;      /* Soft, warm off-white */
-            --bg-secondary: #FFFFFF;     /* Clean white for cards */
-            --accent-blue: #004080;     /* Deep, professional navy blue */
-            --text-primary: #212121;     /* Dark gray for primary text */
-            --text-secondary: #585858;   /* Medium gray for secondary text */
-            --border-blue: rgba(0, 64, 128, 0.15); /* Subtle border */
+            --bg-primary: #FDFDFA;
+            /* Soft, warm off-white */
+            --bg-secondary: #FFFFFF;
+            /* Clean white for cards */
+            --accent-blue: #004080;
+            /* Deep, professional navy blue */
+            --text-primary: #212121;
+            /* Dark gray for primary text */
+            --text-secondary: #585858;
+            /* Medium gray for secondary text */
+            --border-blue: rgba(0, 64, 128, 0.15);
+            /* Subtle border */
+            --shadow-color: rgba(0, 64, 128, 0.1);
         }
 
         * {
@@ -34,7 +42,24 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
-            transition: opacity 0.5s ease;
+            /* Animated Gradient Background */
+            background: linear-gradient(-45deg, #FDFDFA, #F7F7F3, #FDFDFA, #F5F5F0);
+            background-size: 400% 400%;
+            animation: gradientAnimation 30s ease infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
 
         .container {
@@ -49,11 +74,17 @@
             top: 0;
             left: 0;
             width: 100%;
-            background-color: rgba(253, 253, 250, 0.8); /* Light, translucent background */
+            background-color: rgba(253, 253, 250, 0.8);
+            /* Light, translucent background */
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-blue);
             z-index: 1000;
             padding: 1rem 2rem;
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+        }
+
+        header.scrolled {
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.05);
         }
 
         nav {
@@ -80,14 +111,16 @@
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 1.5rem; /* Reduced gap */
+            gap: 1.5rem;
+            /* Reduced gap */
         }
 
         .nav-links a {
             color: var(--text-secondary);
             text-decoration: none;
             font-weight: 400;
-            font-size: 0.95rem; /* Reduced font size */
+            font-size: 0.95rem;
+            /* Reduced font size */
             position: relative;
             transition: color 0.3s ease;
             cursor: pointer;
@@ -117,8 +150,27 @@
         }
 
         main {
-            padding-top: 100px; /* Offset for fixed header */
-            min-height: calc(100vh - 180px); /* Ensure footer is pushed down */
+            padding-top: 100px;
+            /* Offset for fixed header */
+            min-height: calc(100vh - 180px);
+            /* Ensure footer is pushed down */
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        /* Hero Section for Homepage */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem 2rem 2rem;
+        }
+
+        .hero .page-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+
+        .hero .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
         }
 
         /* Page Titles */
@@ -129,7 +181,7 @@
             color: var(--accent-blue);
             margin-bottom: 1rem;
         }
-        
+
         .tagline {
             text-align: center;
             font-size: 1.1rem;
@@ -147,7 +199,7 @@
             max-width: 800px;
             margin: 0 auto 4rem auto;
         }
-        
+
         .section-divider {
             border: 0;
             height: 1px;
@@ -175,7 +227,7 @@
 
         .card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+            box-shadow: 0 15px 35px var(--shadow-color), 0 0 0 4px rgba(0, 64, 128, 0.05);
         }
 
         .card.visible {
@@ -193,7 +245,7 @@
         .card-content {
             color: var(--text-secondary);
         }
-        
+
         .portal-card {
             text-align: center;
             cursor: pointer;
@@ -237,7 +289,7 @@
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        
+
         .tech-tile:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
@@ -285,11 +337,11 @@
             border-radius: 8px;
             max-width: 600px;
             width: 90%;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
             transform: scale(0.95);
             transition: transform 0.3s ease;
         }
-        
+
         .modal-overlay.visible .modal-content {
             transform: scale(1);
         }
@@ -327,10 +379,11 @@
             margin-bottom: 0.5rem;
         }
 
-        .modal-body p, .modal-body ul {
+        .modal-body p,
+        .modal-body ul {
             color: var(--text-secondary);
         }
-        
+
         .modal-body ul {
             padding-left: 20px;
         }
@@ -339,11 +392,13 @@
         .timeline-item {
             margin-bottom: 2.5rem;
         }
+
         .timeline-item h3 {
             color: var(--text-primary);
             font-weight: 400;
             margin-bottom: 0.5rem;
         }
+
         .timeline-item h3 strong {
             font-weight: 700;
             color: var(--accent-blue);
@@ -354,19 +409,24 @@
             overflow-x: auto;
             margin-top: 2rem;
         }
+
         .summary-table {
             width: 100%;
             border-collapse: collapse;
             text-align: left;
         }
-        .summary-table th, .summary-table td {
+
+        .summary-table th,
+        .summary-table td {
             padding: 1rem;
             border-bottom: 1px solid var(--border-blue);
         }
+
         .summary-table th {
             color: var(--accent-blue);
             font-weight: 700;
         }
+
         .summary-table tbody tr:nth-child(even) {
             background-color: rgba(0, 64, 128, 0.02);
         }
@@ -382,6 +442,7 @@
         }
     </style>
 </head>
+
 <body>
 
     <header>
@@ -403,7 +464,8 @@
     </main>
 
     <footer id="footer">
-        <p>&copy; 2025. A perspective on building with first principles.</p>
+        <p>2025 Ramu Mangalarapu</p>
+        <p><small>Disclaimer: Ideas and opinions expressed are my own and do not reflect my employer.</small></p>
     </footer>
 
     <!-- Modal Structure (Hidden by default) -->
@@ -426,7 +488,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            
+
             const mainContent = document.getElementById('main-content');
             const navLinks = document.querySelectorAll('nav a');
             const modal = document.getElementById('tech-modal');
@@ -435,15 +497,20 @@
             const modalSolves = document.getElementById('modal-solves');
             const modalExamples = document.getElementById('modal-examples');
             const modalCloseBtn = document.getElementById('modal-close-btn');
+            const header = document.querySelector('header');
 
             const pageContent = {
                 home: `
+                    <div class="hero">
+                        <div class="container">
+                            <h1 class="page-title">Ramu Mangalarapu take on software architecture</h1>
+                            <p class="tagline">Somehow everything is related</p>
+                            <p class="page-subtitle">
+                                An approach to understanding any system, not by memorizing its complexities, but by distilling it to its timeless, fundamental truths. This is a framework for thinking, designed for architects who seek to build with clarity and conviction.
+                            </p>
+                        </div>
+                    </div>
                     <div class="container">
-                        <h1 class="page-title">The Reductionist's Lens</h1>
-                        <p class="tagline">Ramu's way of thinking</p>
-                        <p class="page-subtitle">
-                            An approach to understanding any system, not by memorizing its complexities, but by distilling it to its timeless, fundamental truths. This is a framework for thinking, designed for architects who seek to build with clarity and conviction.
-                        </p>
                         <div class="card-grid">
                             <div class="card portal-card" data-page="layers"><h2 class="card-title">The Layers of Abstraction</h2><p class="card-content">Peel back the layers of a modern system, from your application code down to the physical hardware that executes it.</p></div>
                             <div class="card portal-card" data-page="primitives"><h2 class="card-title">The Irreducible Primitives</h2><p class="card-content">Discover the 'atomic' components of any system—the absolute fundamental building blocks that everything else is built upon.</p></div>
@@ -565,7 +632,7 @@
                 modalTitle.textContent = tileData.title;
                 modalDescription.textContent = tileData.description;
                 modalSolves.textContent = tileData.solves;
-                
+
                 modalExamples.innerHTML = ''; // Clear previous examples
                 if (tileData.examples) {
                     tileData.examples.split(', ').forEach(item => {
@@ -574,7 +641,7 @@
                         modalExamples.appendChild(li);
                     });
                 }
-                
+
                 modal.classList.add('visible');
             }
 
@@ -615,6 +682,7 @@
             function loadPage(page) {
                 if (!pageContent[page]) return;
                 mainContent.style.opacity = 0;
+                mainContent.style.transform = 'translateY(20px)';
                 setTimeout(() => {
                     mainContent.innerHTML = pageContent[page];
                     window.scrollTo(0, 0);
@@ -623,6 +691,7 @@
                     });
                     initializeEventListeners();
                     mainContent.style.opacity = 1;
+                    mainContent.style.transform = 'translateY(0)';
                 }, 300);
             }
 
@@ -644,13 +713,23 @@
                     closeModal();
                 }
             });
-             // Close modal with Escape key
+            // Close modal with Escape key
             window.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape' && modal.classList.contains('visible')) {
                     closeModal();
                 }
             });
+
+            // Header shadow on scroll
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 10) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
         });
     </script>
 </body>
+
 </html>
