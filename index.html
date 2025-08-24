@@ -107,7 +107,7 @@
             background-color: rgba(30, 30, 30, 0.8);
         }
 
-        body.dark-mode .logo .logo-svg {
+        body.dark-mode .logo .logo-image {
             /* Inverts the logo color in dark mode for visibility */
             filter: invert(1);
         }
@@ -137,13 +137,13 @@
             align-items: center;
         }
 
-        .logo .logo-svg {
+        .logo .logo-image {
             width: 150px;
             height: auto;
             transition: opacity 0.3s ease, filter 0.3s ease;
         }
 
-        .logo a:hover .logo-svg {
+        .logo a:hover .logo-image {
             opacity: 0.8;
         }
 
@@ -757,7 +757,7 @@
         }
 
         @media (max-width: 1100px) {
-            .logo .logo-svg {
+            .logo .logo-image {
                 width: 125px;
             }
 
@@ -914,8 +914,7 @@
         <nav>
             <div class="logo">
                 <a data-page="home">
-                    <!-- Updated the logo as requested -->
-                    <img src="547c8192-1bf9-4ee3-8e83-f82aced8c9ed.png" alt="The Reductionist's Lens Logo" class="logo-svg">
+                    <img src="image.png" alt="The Reductionist's Lens Logo" class="logo-image">
                 </a>
             </div>
             <div class="nav-right-section">
@@ -1043,21 +1042,33 @@
                     </div>
                     <div class="container">
                         <div class="card-grid">
-                            <div class="card portal-card" data-page="layers">
-                                <h2 class="card-title">The Layers of Abstraction</h2>
-                                <p class="card-content">Let's peel back the layers of a modern system, from the code you write all the way down to the silicon that runs it.</p>
+                            <div class="card card-with-image portal-card" data-page="layers">
+                                <img src="https://images.unsplash.com/photo-1741879080190-bad94442162d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" alt="Layers of Abstraction" class="card-image">
+                                <div class="card-text-content">
+                                    <h2 class="card-title">The Layers of Abstraction</h2>
+                                    <p class="card-content">Dive deep into the architecture of modern software. Understand how the layers of abstraction work together, from the user interface to the hardware.</p>
+                                </div>
                             </div>
-                            <div class="card portal-card" data-page="primitives">
-                                <h2 class="card-title">The Irreducible Primitives</h2>
-                                <p class="card-content">Discover the 'atoms' of software—the handful of fundamental building blocks that make up every system you've ever seen.</p>
+                            <div class="card card-with-image portal-card" data-page="primitives">
+                                <img src="https://images.rawpixel.com/image_social_landscape/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvdjEwMTYtYy0wOF8xLWtzaDZtemEzLmpwZw.jpg" alt="Irreducible Primitives" class="card-image">
+                                <div class="card-text-content">
+                                    <h2 class="card-title">The Irreducible Primitives</h2>
+                                    <p class="card-content">Learn about the fundamental building blocks of all software systems. These are the 'atoms' that combine to create complex applications.</p>
+                                </div>
                             </div>
-                            <div class="card portal-card" data-page="forces">
-                                <h2 class="card-title">The Immutable Forces</h2>
-                                <p class="card-content">Explore the 'laws of physics' for software. These are the inescapable trade-offs that shape every architectural decision, whether we realize it or not.</p>
+                            <div class="card card-with-image portal-card" data-page="forces">
+                                <img src="https://images.unsplash.com/photo-1597773150796-e5c14ebecbf5?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YWJzdHJhY3QlMjBibHVlfGVufDB8fDB8fHww" alt="Immutable Forces" class="card-image">
+                                <div class="card-text-content">
+                                    <h2 class="card-title">The Immutable Forces</h2>
+                                    <p class="card-content">Discover the fundamental laws that govern software architecture. These forces shape every decision and trade-off in system design.</p>
+                                </div>
                             </div>
-                            <div class="card portal-card" data-page="model">
-                                <h2 class="card-title">The Mental Model</h2>
-                                <p class="card-content">Here's a simple, four-step framework you can use to tackle any system design problem with a clear, first-principles mindset.</p>
+                            <div class="card card-with-image portal-card" data-page="model">
+                                <img src="https://images.unsplash.com/photo-1676799910130-81f30074775d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA==" alt="The Mental Model" class="card-image">
+                                <div class="card-text-content">
+                                    <h2 class="card-title">The Mental Model</h2>
+                                    <p class="card-content">A practical framework for thinking about system design. Use this model to approach any problem with a clear and structured thought process.</p>
+                                </div>
                             </div>
                         </div>
                     </div>`,
